@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="/static/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/static/css/argon.css" type="text/css">
+
+  <title>Accept Policy - Nepal vACC</title>
+  <link rel="icon" href="/static/img/logo.png" type="image/png">
+  <link href="/static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto ">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                data-target="#sidenav-main">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item d-sm-none">
+              <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                <i class="ni ni-zoom-split-in"></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="ni ni-bell-55"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
+                <!-- List group -->
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item list-group-item-action">
+                    <div class="row align-items-center"></div>
+                    <h5 style="text-align: center;">Not Implemented Yet</h5>
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            <a class="nav-link pr-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ user_avatar_path }}">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                </div>
+              </div>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <a href="https://www.nepalvacc.com/" style="width: 200px; height: 140px; margin:auto;display: block"><img src="/static/img/logo.png"
+        style="width: 200px; height: 140px; margin: auto; display: block;"></a>
+    <h2 style="text-align: center;"> Welcome To Nepal vACC</h2>
+    <form action="/dashboard/policy/accept" method="POST">
+      <div class="box">
+        <div class="grey lighten-3 p-4" style="border-radius: 20px;">
+          <div class="d-flex flex-row">
+            <i style="font-size:35px; margin-right:20px;" class="fas fa-envelope"></i>
+            <div class="d-flex flex-column">
+              <p style="color: rgb(43, 101, 167);"><strong> Allow our marketing emails and communication from the vACC
+                  Staff to reach your mail boxes. </strong></p>
+              <div class="custom-control custom-checkbox mt-5" style="text-align:left;">
+                <input class="form-check-input mt-1" type="checkbox" value="1" aria-label="Checkbox" id="emailoptin"
+                  name="emailoptin">
+                <label for="emailoptin">Opt into emails (you can always opt in/out of the emails through the
+                  dashboard.)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="box">
+        <div class="grey lighten-3 p-4" style="border-radius: 20px;">
+          <div class="d-flex flex-row">
+            <i style="font-size:35px; margin-right:20px;" class="fab fa-discord"></i>
+            <div class="d-flex flex-column">
+              <p style="color: rgb(43, 101, 167);"><strong> Join our Discord server and chat with fellow controllers and
+                  pilots. </strong></p>
+              <p style="width: 75%; text-align:left; font-size: 1em;">You will see an option on the left in the navbar to link your Discord account.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; margin-top: 20px;">Before we let you in, you need to accept our <a
+          href="https://www.nepalvacc.com/wp-content/uploads/2021/07/Nepal-Data-Handling-Policy-V1.0.pdf"
+          target="_blank">Data Handling Policy</a></p>
+      <div class="accept">
+        <button type="submit" class="btn btn-success">Accept & enter</button>
+      </div>
+      <div class="deny">
+        <a href="/dashboard/policy/deny"><button type="submit" formaction="/dashboard/policy/deny"
+            class="btn btn-danger">Deny & logout</button></a>
+      </div>
+    </form>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

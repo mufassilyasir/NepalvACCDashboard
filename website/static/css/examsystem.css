@@ -1,0 +1,12 @@
+body {
+    max-width: 100%;
+}
+
+.exam-status-failed {
+    background-color: rgb(219, 33, 33);
+
+}
+.exam-status-passed {
+    background-color: rgb(53, 151, 53);
+
+}

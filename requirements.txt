@@ -1,0 +1,12 @@
+flask
+flask[async]
+flask_sqlalchemy
+flask_security
+flask_login
+flask_admin
+python-dotenv
+requests
+aiohttp
+waitress
+flask_mail
+email_validator

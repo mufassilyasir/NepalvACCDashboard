@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/static/img/logo.png" type="image/png">
+    <title>Admin - Exam Tokens</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <a href="/dashboard/admin/"><button type="button" class="btn btn-outline-primary">Back to Admin
+                Panel</button></a>
+    </div>
+    <h3 style="text-align: center;"> Issue Exam Tokens.</h3>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="#" method="POST">
+        <div class="container">
+            <label for="student_name" class="form-label">Select Student</label>
+            <select name="student_name" id="student_name" class="form-control">
+                {% for row in students %}
+                <option value="{{ row.id }}">{{ row.id }} - {{ row.NameFull }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="exam-rating" class="form-label">Select Exam Rating</label>
+            <select name="exam-rating" id="exam-rating" class="form-control">
+                <option value="s2">S2</option>
+                <option value="s3">S3</option>
+                <option value="c1">C1</option>
+            </select>
+
+        </div>
+        <div class="container" style="padding-top:10px;padding-bottom:10px">
+            <button type="submit" class="btn btn-warning">Issue Token</button>
+        </div>
+    </form>
+    <br><br>
+    <h3 style="text-align: center;"> Revoke Exam Tokens.</h3>
+    <form action="#" method="POST">
+        <div class="container">
+            <label for="revoke-token" class="form-label">Select Student</label>
+            <select name="revoke-token" id="revoke-token" class="form-control">
+                {% for row in pending %}
+                <option value="{{ row.value }}"> CID: {{ row.student_id }} - Name: {{ row.student_assigned }} - Token
+                    Rating: {{ row.exam_rating }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="container" style="padding-top:10px;padding-bottom:10px">
+            <button type="submit" class="btn btn-danger">Revoke Token</button>
+        </div>
+    </form>
+
+
+
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

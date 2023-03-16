@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="/static/img/logo.png" type="image/png">
+  <link href="/static/css/examstarter.css" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="/static/img/logo.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="/static/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="/static/css/examstarterargon.css" type="text/css">
+  <link rel="stylesheet" href="/static/css/popup.css" type="text/css">
+  <title>{{ exam_rating }} Exam Starter</title>
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner" style="background-color: rgb(37,39,46);">
+      <!-- Brand -->
+      <div class="sidenav-header  align-items-center">
+        <a href="https://www.nepalvacc.com/" target="_self"><img src="/static/img/VATSIM_Nepal_2.png" align="middle" width="120"
+            height="100" alt="Nepal vACC Main Website"></a>
+      </div>
+      <div class="navbar-inner">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">
+                <i class="ni ni-tv-2 text-primary"></i>
+                <span class="nav-link-text">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Relevant Links</span>
+          </h6>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="https://www.online.nepalvacc.com/" target="_blank">
+                <i class="fas fa-globe"></i>
+                <span class="nav-link-text">Online Controllers</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="https://www.controllers.nepalvacc.com/" target="_blank">
+                <i class="fas fa-users"></i>
+                <span class="nav-link-text">ATC Roster Members</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/events" target="_self">
+                <i class="fas fa-calendar-day"></i>
+                <span class="nav-link-text">Upcoming Events</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Exam Area</span>
+          </h6>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link active" href="/dashboard/exams" target="_self">
+                <i class="fas fa-book-reader"></i>
+                <span class="nav-link-text">My Exams</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Discord Area</span>
+          </h6>
+          {% if is_linked == "No" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/discord/link" target="_self">
+                <i class="fab fa-discord"></i>
+                <span class="nav-link-text">Link Discord Account</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if is_member == "False" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/discord/server/join" target="_self">
+                <i class="fab fa-discord"></i>
+                <span class="nav-link-text">Join Nepal vACC Discord Server</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if is_linked == "True" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link sidenav-toggler" data-action="sidenav-unpin" data-target="undefined"
+                style="cursor: pointer" target="_self">
+                <i class="fab fa-discord"></i>
+                <div class="open-popup-btn"><span id="open-popup-btn" class="nav-link-text">Unlink Discord
+                    Account</span></div>
+                <div class="modal" id="modal"></div>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Other Stuff</span>
+          </h6>
+          {% if OptinEmails == "False" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/email-join" target="_self">
+                <i class="fas fa-envelope-open"></i>
+                <span class="nav-link-text">Opt in Emails</span>
+              </a>
+            </li>
+          </ul>
+          {% else %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/email-leave" target="_self">
+                <i class="fas fa-envelope"></i>
+                <span class="nav-link-text">Opt out of Emails</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if check_admin == "True" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/admin/" target="_self">
+                <i class="fas fa-user-shield"></i>
+                <span class="nav-link-text">Admin Panel</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/logout" target="_self">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-link-text">Log out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+      <p id="time" class="time">Hold on, checking the time.</p>
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto ">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                data-target="#sidenav-main">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            <a class="nav-link pr-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if is_discord_profile_allowed == "True" %}
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ discord_profile_link }}">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                </div>
+              </div>
+              {% endif %}
+              {% if is_discord_profile_allowed == "False" %}
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ user_avatar_path }}">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                </div>
+              </div>
+              {% endif %}
+            </a>
+          </ul>
+        </div>
+    </nav>
+    <div class="startercontainer">
+      <br><br>
+      <h3
+        style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight: bold; text-decoration: underline;">
+        {{ exam_rating }} Theory Exam</h3>
+
+      <br><br>
+
+      <h5>1. This is your {{ exam_rating }} theory test for your visiting approval in Nepal vACC.</h5>
+      <h5>2. This theory exam consists of {{ question_num }} questions and each question carries 1 mark.</h5>
+      <h5>3. To pass this theory exam you must achieve minimum {{ minimum_grade }} marks.</h5>
+      <h5>4. Each question is a multiple choice question.</h5>
+      <h5>5. This is a <strong>{{ time_limit }}</strong> minute timed exam.</h5>
+      <h5>6. Failure to complete exam within the time limit will result in exam being failed.</h5>
+      <h5>7. To help you with time management the timer is mentioned at the top of the exam when you start.</h5>
+      <h5>8. And most importantly, if you believe all the options listed for the question are incorrect or the answer
+        you
+        selected should've been correct and is marked incorrect, please report it to us.</h5>
+
+    </div>
+    <br>
+    <form action="" method="POST">
+      <div class="wrapper">
+        <button type="submit" class="btn btn-success" name="starter" value="{{ exam_rating }}">Please start the
+          exam</button>
+      </div>
+      <br><br><br>
+    </form>
+    <!-- Discord Unlink Modal -->
+    <div class="popup center" id="popup-modal">
+      <div class="icon">
+        <i class="fas fa-exclamation"></i>
+      </div>
+      <div class="title">
+        Hold up! Are you sure?
+      </div>
+      <div class="description">
+        If you unlink your Discord account, you will be kicked automatically from the Nepal vACC Discord Server
+        if you
+        are a member. This will also remove your Discord profile picture if you have selected it.
+      </div>
+      <div class="dismiss-btn">
+        <a href='/dashboard/discord/unlink'><button id="dismiss-popup-btn">Unlink</button></a>
+      </div>
+      <div class="hi-btn">
+        <a href="#" class="sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><button
+            id="hi-popup-btn">Uhh, nevermind!</button></a>
+      </div>
+    </div>
+    <div class="dimmer"></div>
+    <!-- Core -->
+    <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/vendor/js-cookie/js.cookie.js"></script>
+    <script src="/static/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="/static/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Optional JS -->
+    <script src="/static/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="/static/vendor/chart.js/dist/Chart.extension.js"></script>
+    <!-- Argon JS -->
+    <script src="/static/js/argon.js?v=1.2.0"></script>
+    <!-- Custom JS -->
+    <script src="/static/js/popup.js"></script>
+    <script>
+      const time = document.getElementById('time')
+      function updatetime() {
+        const nowtime = new Date().toUTCString()
+
+        time.innerHTML = nowtime
+      }
+      setInterval(updatetime, 1000);
+    </script>
+</body>
+
+</html>

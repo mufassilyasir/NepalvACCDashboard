@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+    <link rel="icon" href="/static/img/logo.png" type="image/png">
+    <title>Admin - Exam Questions</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <a href="/dashboard/admin/"><button type="button" class="btn btn-outline-primary">Back to Admin
+                Panel</button></a>
+    </div>
+    <h3 style="text-align: center;"> Exam Questions</h3>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 bg-light mt-5 p-4 rounded">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="rating_select" class="form-label">Rating</label>
+                        <select name="rating_select" class="form-control form-control-lg" id="rating_select">
+                            <option value="NoneRating" disabled selected>Select Rating</option>
+                            <option value="s2">S2</option>
+                            <option value="s3">S3</option>
+                            <option value="c1">C1</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="Question" class="form-label">Question</label>
+                        <input type="text" id="inputText" class="form-control" name="Question"
+                            aria-describedby="bodyHelpBlock" maxlength="1000" placeholder="What is a runway?">
+                        <div id="bodyHelpBlock" class="form-text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="Option1" class="form-label">Option 1</label>
+                        <input type="text" id="inputText" class="form-control" name="Option1"
+                            aria-describedby="bodyHelpBlock" maxlength="1000"
+                            placeholder="It's a place where pilots rub their landing gears?">
+                        <div id="bodyHelpBlock" class="form-text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="Option2" class="form-label">Option 2</label>
+                        <input type="text" id="inputText" class="form-control" name="Option2"
+                            aria-describedby="bodyHelpBlock" maxlength="1000"
+                            placeholder="It has numbers on both sides.">
+                        <div id="bodyHelpBlock" class="form-text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="Option3" class="form-label">Option 3</label>
+                        <input type="text" id="inputText" class="form-control" name="Option3"
+                            aria-describedby="bodyHelpBlock" maxlength="1000"
+                            placeholder="They can be either asphalt, concrete or even grass">
+                        <div id="bodyHelpBlock" class="form-text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="Option4" class="form-label">Option 4</label>
+                        <input type="text" id="inputText" class="form-control" name="Option4"
+                            aria-describedby="bodyHelpBlock" maxlength="1000"
+                            placeholder="Runways are runways, what's wrong with you examiner?">
+                        <div id="bodyHelpBlock" class="form-text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="noofoptions" class="form-label">Number of options</label>
+                        <input type="text" id="inputText" class="form-control" name="noofoptions"
+                            aria-describedby="bodyHelpBlock" maxlength="1000" placeholder="4">
+                        <div id="bodyHelpBlock" class="form-text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="answer" class="form-label">Correct Answer</label>
+                        <input type="text" id="inputText" class="form-control" name="answer"
+                            aria-describedby="bodyHelpBlock" maxlength="1000" placeholder="4">
+                        <div id="bodyHelpBlock" class="form-text">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="wrapper" style="display:flex; justify-content:center">
+                        <button type="submit" class="btn btn-warning">Add Question</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 bg-light mt-5 p-4 rounded">
+                <form action="#" method="POST">
+                    <br><br>
+                    <div class="form-group">
+                        <label for="question_rem" class="form-label">Questions</label>
+                        <select name="question_rem" class="form-control form-control-lg chosen" id="question_rem">
+                            <option value="NoneQuestion" disabled selected> Select Question </option>
+                            {% for q in exam_pool %}
+                            <option value="{{ q.value }}"> {{ q.Question }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <br>
+                    <div class="wrapper" style="display:flex; justify-content:center">
+                        <button type="submit" class="btn btn-secondary">Edit Question</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <script>
+        $(".chosen").chosen();
+    </script>
+</body>
+
+</html>

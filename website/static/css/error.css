@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.heading {
+  text-align: center;
+  font-size: 7em;
+  line-height: 1.3em;
+  margin: 2rem 0 0.5rem 0;
+  padding: 0;
+  text-shadow: 0 0 1rem #fefefe;
+}
+body {
+  background-color: rgba(230, 223, 223, 0.87);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container,
+.container > .row,
+.container > .row > div {
+  height: 100%;
+  font-family: "Fira Sans", sans-serif;
+}
+
+#maintext {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#maintext .number {
+  font-size: 4rem;
+  font-weight: 500;
+}
+#maintext .number + .text {
+  margin: 0 0 1rem;
+}
+#maintext .text {
+  font-weight: 300;
+  text-align: center;
+}
+.loginbtn {
+	border-radius: 20px;
+	border: 1px solid #cd50ec;
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 13px;
+	font-weight:600;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: ease-out 0.3s;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+}
+.loginbtn:hover {
+	color:#fff;
+	cursor: pointer;
+}
+
+
+.loginbtn:before {
+	border-radius: 20px;
+	transition: 0.3s all ease;
+	position:absolute;
+	top: 0;
+	left: 50%;
+	right: 50%;
+	bottom: 0;
+	opacity: 0;
+	content: "";
+    background-color: #db2323;
+}
+
+.loginbtn:hover:before {
+	transition: 0.5s all ease;
+	left: 0;
+	right: 0;
+	opacity: 1;
+	z-index: -1;
+}

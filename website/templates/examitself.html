@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/static/img/logo.png" type="image/png">
+    <link href="/static/css/examitself.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="/static/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/examstarterargon.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/static/css/popup.css" type="text/css"> -->
+    <title>{{ exam_rating }} Theory Exam</title>
+</head>
+
+<body>
+    <!-- Sidenav -->
+    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+        <div class="scrollbar-inner">
+            <!-- Brand -->
+            <div class="sidenav-header  align-items-center">
+                <a href="https://www.nepalvacc.com/" target="_self"><img src="/static/img/logo.png" align="middle"
+                        width="120" height="100" alt="Nepal vACC Main Website"></a>
+            </div>
+            <div class="navbar-inner">
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                    <!-- Nav items -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">
+                                <i class="ni ni-tv-2 text-primary"></i>
+                                <span class="nav-link-text">Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Divider -->
+                    <hr class="my-3">
+                    <!-- Heading -->
+                    <h6 class="navbar-heading p-0 text-muted">
+                        <span class="docs-normal">Relevant Links</span>
+                    </h6>
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://www.online.nepalvacc.com/" target="_blank">
+                                <i class="fas fa-globe"></i>
+                                <span class="nav-link-text">Online Controllers</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://www.controllers.nepalvacc.com/" target="_blank">
+                                <i class="fas fa-users"></i>
+                                <span class="nav-link-text">ATC Roster Members</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/dashboard/events" target="_self">
+                                <i class="fas fa-calendar-day"></i>
+                                <span class="nav-link-text">Upcoming Events</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Divider -->
+                    <hr class="my-3">
+                    <!-- Heading -->
+                    <h6 class="navbar-heading p-0 text-muted">
+                        <span class="docs-normal">Exam Area</span>
+                    </h6>
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="/dashboard/exams" target="_self">
+                                <i class="fas fa-book-reader"></i>
+                                <span class="nav-link-text">My Exams</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Divider -->
+                    <hr class="my-3">
+                    <!-- Heading -->
+                    <h6 class="navbar-heading p-0 text-muted">
+                        <span class="docs-normal">Discord Area</span>
+                    </h6>
+                    {% if is_linked == "No" %}
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/discord/link" target="_self">
+                                <i class="fab fa-discord"></i>
+                                <span class="nav-link-text">Link Discord Account</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% if is_member == "False" %}
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/discord/server/join" target="_self">
+                                <i class="fab fa-discord"></i>
+                                <span class="nav-link-text">Join Nepal vACC Discord Server</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% if is_linked == "True" %}
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item">
+                            <a class="nav-link sidenav-toggler" data-action="sidenav-unpin" data-target="undefined"
+                                style="cursor: pointer" target="_self">
+                                <i class="fab fa-discord"></i>
+                                <div class="open-popup-btn"><span id="open-popup-btn" class="nav-link-text">Unlink
+                                        Discord
+                                        Account</span></div>
+                                <div class="modal" id="modal"></div>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <!-- Divider -->
+                    <hr class="my-3">
+                    <!-- Heading -->
+                    <h6 class="navbar-heading p-0 text-muted">
+                        <span class="docs-normal">Other Stuff</span>
+                    </h6>
+                    {% if OptinEmails == "False" %}
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/dashboard/email-join" target="_self">
+                                <i class="fas fa-envelope-open"></i>
+                                <span class="nav-link-text">Opt in Emails</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/dashboard/email-leave" target="_self">
+                                <i class="fas fa-envelope"></i>
+                                <span class="nav-link-text">Opt out of Emails</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% if check_admin == "True" %}
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/dashboard/admin/" target="_self">
+                                <i class="fas fa-user-shield"></i>
+                                <span class="nav-link-text">Admin Panel</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/logout" target="_self">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="nav-link-text">Log out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="main-content" id="panel">
+        <!-- Topnav -->
+        <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+            <p id="time" class="time">Hold on, checking the time.</p>
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar links -->
+                    <ul class="navbar-nav align-items-center  ml-md-auto ">
+                        <li class="nav-item d-xl-none">
+                            <!-- Sidenav toggler -->
+                            <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                                data-target="#sidenav-main">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item d-sm-none">
+                            <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                                <i class="ni ni-zoom-split-in"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                        <a class="nav-link pr-1" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            {% if is_discord_profile_allowed == "True" %}
+                            <div class="media align-items-center">
+                                <span class="avatar avatar-sm rounded-circle">
+                                    <img alt="Image placeholder" src="{{ discord_profile_link }}">
+                                </span>
+                                <div class="media-body  ml-2  d-none d-lg-block">
+                                    <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if is_discord_profile_allowed == "False" %}
+                            <div class="media align-items-center">
+                                <span class="avatar avatar-sm rounded-circle">
+                                    <img alt="Image placeholder" src="{{ user_avatar_path }}">
+                                </span>
+                                <div class="media-body  ml-2  d-none d-lg-block">
+                                    <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </a>
+                    </ul>
+                </div>
+        </nav>
+        <div class="container" style="text-align: center;">
+            <br><br>
+            <h4>Time left:</h4>
+            <div id="countdown" class="countdown">
+                <div class="timeleft">
+                    <h2 id="minutes">99</h2>
+                    <small>Minutes</small>
+                </div>
+                <div class="timeleft">
+                    <h2 id="seconds">99</h2>
+                    <small>Seconds</small>
+                </div>
+            </div>
+            <h3 style="text-align: center; font-family:Verdana; font-weight: 600;"> {{ exam_rating }} Theory Exam
+            </h3>
+            <br><br>
+            <form action="" method="POST">
+
+                {% for q in questions %}
+
+                <h3 class="question">{{ q.Question }}</h3>
+                <br>
+
+                {% if q.Noofoptions == "4" %}
+                <ol type="A" style="display: inline-block;" align="left">
+                    <li>{{ q.Answer1 }}</li>
+                    <li>{{ q.Answer2 }}</li>
+                    <li>{{ q.Answer3 }}</li>
+                    <li>{{ q.Answer4 }}</li>
+                </ol>
+                {% endif %}
+                {% if q.Noofoptions == "2" %}
+                <ol type="A" style="display: inline-block;" align="left">
+                    <li>{{ q.Answer1 }}</li>
+                    <li>{{ q.Answer2 }}</li>
+                </ol>
+                {% endif %}
+                <br>
+
+                {% if q.Noofoptions == "4" %}
+                <p class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio{{q.Value}}" id="btnradio{{ q.Value * 5 + 1 }}"
+                        Value="[{{q.Value}},1]">
+                    <label class="btn btn-outline-primary" for="btnradio{{ q.Value * 5 + 1 }}">Option A</label>
+
+                    <input type="radio" class="btn-check" name="btnradio{{q.Value}}" id="btnradio{{ q.Value * 5 + 2 }}"
+                        Value="[{{q.Value}},2]">
+                    <label class="btn btn-outline-primary" for="btnradio{{ q.Value * 5 + 2 }}">Option B</label>
+
+                    <input type="radio" class="btn-check" name="btnradio{{q.Value}}" id="btnradio{{ q.Value * 5 + 3 }}"
+                        Value="[{{q.Value}},3]">
+                    <label class="btn btn-outline-primary" for="btnradio{{ q.Value * 5 + 3 }}">Option C</label>
+
+                    <input type="radio" class="btn-check" name="btnradio{{q.Value}}" id="btnradio{{ q.Value * 5 + 4 }}"
+                        Value="[{{q.Value}},4]">
+                    <label class="btn btn-outline-primary" for="btnradio{{ q.Value * 5 + 4 }}">Option D</label>
+                </p>
+                {% endif %}
+                {% if q.Noofoptions == "2" %}
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio{{q.Value}}" id="btnradio{{ q.Value * 5 + 1 }}"
+                        Value="[{{q.Value}},1]">
+                    <label class="btn btn-outline-primary" for="btnradio{{ q.Value * 5 + 1 }}">Option A</label>
+
+                    <input type="radio" class="btn-check" name="btnradio{{q.Value}}" id="btnradio{{ q.Value * 5 + 2 }}"
+                        Value="[{{q.Value}},2]">
+                    <label class="btn btn-outline-primary" for="btnradio{{ q.Value * 5 + 2 }}">Option B</label>
+                </div>
+                {% endif %}
+
+                <br><br><br><br>
+                {% endfor %}
+
+                <div class="submit-popup center" id="submit-popup-modal">
+                    <div class="submit-title">
+                        Submit it?
+                    </div>
+                    <div class="submit-description">
+                        Clicking on the submit button will submit the exam. If you have left any question(s) please
+                        complete
+                        them before you submit. If you are finishing the exam after the end time you will be rewarded
+                        "Failed" regardless of the grade. As soon as you submit the exam the result will be emailed (if
+                        you
+                        have opted
+                        in
+                        emails) or you can check your result through the dashboard.
+                    </div>
+                    <div class="submit-btn-btn">
+                        <button id="submit-btn-popup-btn" class="btn" type="submit"
+                            style="cursor: pointer;">Submit</button>
+                    </div>
+                    <div class="dismiss-btn">
+                        <a href='javascript:void();'><button id="dismiss-popup-btn" class="btn btn-secondary"
+                                type="button">No,
+                                not now.</button></a>
+                    </div>
+                </div>
+            </form>
+            <div class="submit-popup-btn">
+                <button class="btn btn btn-warning submit-popup-btn" id="submit-popup-btn">Submit</button>
+            </div>
+            <br><br>
+            <div class="popup center" id="popup-modal">
+                <div class="icon">
+                    <i class="fas fa-exclamation"></i>
+                </div>
+                <div class="title">
+                    Hold up! Are you sure?
+                </div>
+                <div class="description">
+                    If you unlink your Discord account, you will be kicked automatically from the Nepal vACC Discord
+                    Server
+                    if you
+                    are a member. This will also remove your Discord profile picture if you have selected it.
+                </div>
+                <div class="dismiss-btn">
+                    <a href='/dashboard/discord/unlink'><button id="dismiss-popup-btn">Unlink</button></a>
+                </div>
+                <div class="hi-btn">
+                    <a href="javascript:void();" class="sidenav-toggler" data-action="sidenav-pin"
+                        data-target="#sidenav-main"><button id="hi-popup-btn">Uhh, nevermind!</button></a>
+                </div>
+            </div>
+            <div class="dimmer"></div>
+            <div class="dimmerforsubmit"></div>
+        </div>
+    </div>
+
+
+    <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core -->
+    <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/vendor/js-cookie/js.cookie.js"></script>
+    <script src="/static/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="/static/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Optional JS -->
+    <script src="/static/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="/static/vendor/chart.js/dist/Chart.extension.js"></script>
+    <!-- Argon JS -->
+    <script src="/static/js/argon.js?v=1.2.0"></script>
+    <script src="/static/js/examitself.js"></script>
+    <!-- Custom JS -->
+    <!-- <script src="/static/js/popup.js"></script> -->
+    <script type="text/javascript">
+
+        const minutes = document.getElementById('minutes')
+        const seconds = document.getElementById('seconds')
+
+
+        const findtime = new Date(' {{ time_to_check }} ')
+
+
+        function updateCountDowntime() {
+            const utcmonth = new Date().getUTCMonth();
+
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var monthName = months[utcmonth];
+            const utcdate = new Date().getUTCDate();
+            const utcyear = new Date().getUTCFullYear();
+            const utchour = new Date().getUTCHours();
+            const utcmin = new Date().getUTCMinutes();
+            const utcsec = new Date().getUTCSeconds();
+            const timenow = new Date(`${monthName} ${utcdate} ${utcyear} ${utchour}:${utcmin}:${utcsec}`);
+
+
+            const diff = findtime - timenow
+
+            const m = Math.floor(diff / 1000 / 60) % 60;
+            const s = Math.floor(diff / 1000) % 60;
+
+            if (diff >= 0) {
+                minutes.innerHTML = m < 0 ? '0' + m : m;
+                seconds.innerHTML = s < 0 ? '0' + s : s;
+            }
+
+            if (diff <= 0) {
+                minutes.innerHTML = 0;
+                seconds.innerHTML = 0;
+            }
+
+        }
+
+        setInterval(updateCountDowntime, 1000);
+    </script>
+    <script>
+        const time = document.getElementById('time')
+        function updatetime() {
+            const nowtime = new Date().toUTCString()
+
+            time.innerHTML = nowtime
+        }
+        setInterval(updatetime, 1000);
+    </script>
+</body>
+
+</html>

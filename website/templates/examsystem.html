@@ -1,0 +1,539 @@
+<!--
+=========================================================
+* Argon Dashboard - v1.2.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+
+
+* Copyright  Creative Tim (http://www.creative-tim.com)
+* Coded by www.creative-tim.com
+
+
+
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Nepal vACC Dashboard - My Exams</title>
+  <!-- Favicon -->
+  <link rel="icon" href="/static/img/logo.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="/static/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="/static/css/argon.css" type="text/css">
+  <link rel="stylesheet" href="/static/css/popup.css" type="text/css">
+  <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+      <!-- Brand -->
+      <div class="sidenav-header  align-items-center">
+        <a href="https://www.nepalvacc.com/" target="_self"><img src="/static/img/logo.png" align="middle" width="120"
+            height="100" alt="Nepal vACC Main Website"></a>
+      </div>
+      <div class="navbar-inner">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard" target="_self">
+                <i class="ni ni-tv-2 text-primary"></i>
+                <span class="nav-link-text">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Relevant Links</span>
+          </h6>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="https://www.online.nepalvacc.com/" target="_blank">
+                <i class="fas fa-globe"></i>
+                <span class="nav-link-text">Online Controllers</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="https://www.controllers.nepalvacc.com/" target="_blank">
+                <i class="fas fa-users"></i>
+                <span class="nav-link-text">ATC Roster Members</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/events" target="_self">
+                <i class="fas fa-calendar-day"></i>
+                <span class="nav-link-text">Upcoming Events</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Exam Area</span>
+          </h6>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link active" href="/dashboard/exams" target="_self">
+                <i class="fas fa-book-reader"></i>
+                <span class="nav-link-text">My Exams</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Discord Area</span>
+          </h6>
+          {% if is_linked == "No" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/discord/link" target="_self">
+                <i class="fab fa-discord"></i>
+                <span class="nav-link-text">Link Discord Account</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if is_member == "False" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/discord/server/join" target="_self">
+                <i class="fab fa-discord"></i>
+                <span class="nav-link-text">Join Nepal vACC Discord Server</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if is_linked == "True" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link sidenav-toggler" data-action="sidenav-unpin" data-target="undefined"
+                style="cursor: pointer" target="_self">
+                <i class="fab fa-discord"></i>
+                <div class="open-popup-btn"><span id="open-popup-btn" class="nav-link-text">Unlink Discord
+                    Account</span></div>
+                <div class="modal" id="modal"></div>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Other Stuff</span>
+          </h6>
+          {% if OptinEmails == "False" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/email-join" target="_self">
+                <i class="fas fa-envelope-open"></i>
+                <span class="nav-link-text">Opt in Emails</span>
+              </a>
+            </li>
+          </ul>
+          {% else %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/email-leave" target="_self">
+                <i class="fas fa-envelope"></i>
+                <span class="nav-link-text">Opt out of Emails</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if check_admin == "True" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/admin/" target="_self">
+                <i class="fas fa-user-shield"></i>
+                <span class="nav-link-text">Admin Panel</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/logout" target="_self">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-link-text">Log out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+      <p id="time" class="time">Hold on, checking the time.</p>
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto ">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                data-target="#sidenav-main">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            <a class="nav-link pr-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if is_discord_profile_allowed == "True" %}
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ discord_profile_link }}">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                </div>
+              </div>
+              {% endif %}
+              {% if is_discord_profile_allowed == "False" %}
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ user_avatar_path }}">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                </div>
+              </div>
+              {% endif %}
+            </a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <div>Error! {{message}} (simply refresh the page and I shall go.)</div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-5 text-right"></div>
+          </div>
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Residents</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ residents }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Visitors</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ visitors }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Solo Validations</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ solopeeps }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Mentors</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ mentors }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <!-- Dark table -->
+      <div class="row">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">Pending Exams</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col" class="sort" data-sort="name">Exam Type</th>
+                    <th scope="col" class="sort" data-sort="budget">Exam ID</th>
+                    <th scope="col" class="sort" data-sort="status">Exam Status</th>
+                    <th scope="col">Assigned Exam Date</th>
+                    <th scope="col" class="sort" data-sort="completion">Start Exam</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  {% for value in pending_exam_list %}
+                  <tr>
+                    <td style="font-size: 15px;"><span class="name mb-0 text-sm">{{ value.exam_rating }}</span></td>
+                    <td style="font-size: 15px;"> {{ value.exam_value }}</td>
+                    <td style="font-size: 15px;">
+                      {% if assigned_exam == "True" %}
+                      {{ value.exam_status }}
+                      {% else %}
+
+                      {% endif %}
+                    </td>
+                    <td>
+                      {% if assigned_exam == "True" %}
+                      <span class="status" style="font-size: 15px;">{{ value.exam_date }} UTC</span>
+                      {% else %}
+                      <span class="status"></span>
+                      {% endif %}
+                    </td>
+                    <td style="font-size: 15px;">
+                      {% if assigned_exam == "True" %}
+                      <a href='{{ value.exam_link }}'>Start Exam</a>
+                      {% else %}
+
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0" style="text-align: center;">Past Exams</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Exam Type</th>
+                    <th scope="col">Exam ID</th>
+                    <th scope="col">Exam Status</th>
+                    <th scope="col">Exam Grade</th>
+                    <th scope="col">Exam Submitted</th>
+                    <th scope="col">View Exam</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  {% for value in exam_list %}
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">{{ value.exam_rating }}</span>
+                        </div>
+                      </div>
+                    </th>
+                    {% if past_exam != "None" %}
+                    <td style="font-size: 15px;"> {{ value.exam_value }}</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    {% if value.exam_status == "Failed" %}
+                    <td class="exam-status-failed" style="font-size: 14px;">
+                      {{ value.exam_status }}
+                    </td>
+                    {% endif %}
+                    {% if value.exam_status == "Passed" %}
+                    <td class="exam-status-passed" style="font-size: 14px;">
+                      {{ value.exam_status }}
+                    </td>
+                    {% endif %}
+                    <td style="font-size: 15px;">{{ value.exam_grade }}</td>
+                    {% if past_exam == "None" %}
+                    <td></td>
+                    {% else %}
+                    <td style="font-size: 15px;">
+                      {{ value.exam_date }} UTC
+                    </td>
+                    {% endif %}
+                    <td style="font-size: 15px;">
+                      {% if past_exam == "None"%}
+                      {% else %}
+                      <a href='{{ value.exam_link }}'>View Exam</a>
+                      {% endif %}
+                    </td>
+                    <td></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if check_admin == "True" %}
+      <div class="row" style="margin-top: 20px;">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0" style="text-align: center;">vACC Students' Exams</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Exam ID</th>
+                    <th scope="col">Exam Status</th>
+                    <th scope="col">Exam Grade</th>
+                    <th scope="col">Exam Submitted</th>
+                    <th scope="col">View Exam</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  {% for value in query2 %}
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          {% if value.student_id %}
+                          <span class="name mb-0 text-sm">{{ value.student_id }}</span>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </th>
+                    <td style="font-size: 15px;"> {{ value.value }}</td>
+                    {% if value.exam_status == "Failed" %}
+                    <td class="exam-status-failed" style="font-size: 14px;">
+                      {{ value.exam_status }}
+                    </td>
+                    {% endif %}
+                    {% if value.exam_status == "Passed" %}
+                    <td class="exam-status-passed" style="font-size: 14px;">
+                      {{ value.exam_status }}
+                    </td>
+                    {% endif %}
+                    <td style="font-size: 15px;">{{ value.exam_grade }}</td>
+                    <td style="font-size: 15px;">
+                      {{ value.exam_date }} UTC
+                    </td>
+                    <td style="font-size: 15px;">
+                      <a href='{{ value.exam_link }}'>View Exam</a>
+                    </td>
+                    <td></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <!-- Discord Unlink Modal -->
+  <div class="popup center" id="popup-modal">
+    <div class="icon">
+      <i class="fas fa-exclamation"></i>
+    </div>
+    <div class="title">
+      Hold up! Are you sure?
+    </div>
+    <div class="description">
+      If you unlink your Discord account, you will be kicked automatically from the Nepal vACC Discord Server if you
+      are a member. This will also remove your Discord profile picture if you have selected it.
+    </div>
+    <div class="dismiss-btn">
+      <a href="/dashboard/discord/unlink"><button id="dismiss-popup-btn">Unlink</button></a>
+    </div>
+    <div class="hi-btn">
+      <a href="#" class="sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><button
+          id="hi-popup-btn">Uhh, nevermind!</button></a>
+    </div>
+  </div>
+  <div class="dimmer"></div>
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/vendor/js-cookie/js.cookie.js"></script>
+  <script src="/static/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="/static/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <!-- Argon JS -->
+  <script src="/static/js/argon.js?v=1.2.0"></script>
+  <script src="/static/js/popup.js"></script>
+  <script>
+    const time = document.getElementById('time')
+    function updatetime() {
+      const nowtime = new Date().toUTCString()
+
+      time.innerHTML = nowtime
+    }
+    setInterval(updatetime, 1000);
+  </script>
+</body>
+
+</html>

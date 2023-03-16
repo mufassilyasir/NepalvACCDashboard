@@ -1,0 +1,529 @@
+<!--
+=========================================================
+* Argon Dashboard - v1.2.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+
+
+* Copyright  Creative Tim (http://www.creative-tim.com)
+* Coded by www.creative-tim.com
+
+
+
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Nepal vACC Dashboard</title>
+  <!-- Favicon -->
+  <link rel="icon" href="/static/img/logo.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="/static/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="/static/css/argon.css" type="text/css">
+  <link rel="stylesheet" href="/static/css/popup.css" type="text/css">
+</head>
+
+<body>
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+      <!-- Brand -->
+      <div class="sidenav-header  align-items-center">
+        <a href="https://www.nepalvacc.com/" target="_self"><img src="/static/img/logo.png" align="middle" width="120"
+            height="100" alt="Nepal vACC Main Website"></a>
+      </div>
+      <div class="navbar-inner">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <!-- Nav items -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="/dashboard">
+                <i class="ni ni-tv-2 text-primary"></i>
+                <span class="nav-link-text">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Relevant Links</span>
+          </h6>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="https://www.online.nepalvacc.com/" target="_blank">
+                <i class="fas fa-globe"></i>
+                <span class="nav-link-text">Online Controllers</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="https://www.controllers.nepalvacc.com/" target="_blank">
+                <i class="fas fa-users"></i>
+                <span class="nav-link-text">ATC Roster Members</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/events" target="_self">
+                <i class="fas fa-calendar-day"></i>
+                <span class="nav-link-text">Upcoming Events</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Exam Area</span>
+          </h6>
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/exams" target="_self">
+                <i class="fas fa-book-reader"></i>
+                <span class="nav-link-text">My Exams</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Discord Area</span>
+          </h6>
+          {% if is_linked == "No" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/discord/link" target="_self">
+                <i class="fab fa-discord"></i>
+                <span class="nav-link-text">Link Discord Account</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if is_member == "False" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard/discord/server/join" target="_self">
+                <i class="fab fa-discord"></i>
+                <span class="nav-link-text">Join Nepal vACC Discord Server</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if is_linked == "True" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link sidenav-toggler" data-action="sidenav-unpin"
+                data-target="undefined" style="cursor: pointer" target="_self">
+                <i class="fab fa-discord"></i>
+                <div class="open-popup-btn"><span id="open-popup-btn" class="nav-link-text">Unlink Discord
+                    Account</span></div>
+                <div class="modal" id="modal"></div>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Other Stuff</span>
+          </h6>
+          {% if OptinEmails == "False" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/email-join" target="_self">
+                <i class="fas fa-envelope-open"></i>
+                <span class="nav-link-text">Opt in Emails</span>
+              </a>
+            </li>
+          </ul>
+          {% else %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/email-leave" target="_self">
+                <i class="fas fa-envelope"></i>
+                <span class="nav-link-text">Opt out of Emails</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          {% if check_admin == "True" %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/dashboard/admin/" target="_self">
+                <i class="fas fa-user-shield"></i>
+                <span class="nav-link-text">Admin Panel</span>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item ">
+              <a class="nav-link" href="/logout" target="_self">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-link-text">Log out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+      <p id="time" class="time">Hold on, checking the time.</p>
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar links -->
+          <ul class="navbar-nav align-items-center  ml-md-auto ">
+            <li class="nav-item d-xl-none">
+              <!-- Sidenav toggler -->
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                data-target="#sidenav-main">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+            <a class="nav-link pr-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if is_discord_profile_allowed == "True" %}
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ discord_profile_link }}">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                </div>
+              </div>
+              {% endif %}
+              {% if is_discord_profile_allowed == "False" %}
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{ user_avatar_path }}">
+                </span>
+                <div class="media-body  ml-2  d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ name }}</span>
+                </div>
+              </div>
+              {% endif %}
+            </a>
+          </ul>
+        </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <div>{{message}} (simply refresh the page and I shall go.)</div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-5 text-right"></div>
+          </div>
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Residents</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ residents }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Visitors</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ visitors }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Solo Validations</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ solopeeps }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vACC Mentors</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ mentors }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mt--3">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card bg-default">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h5 class="h3 text-white mb-1">My Information</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mt--4">
+      <div class="row">
+        <div class="col-xl-12 order-xl-2">
+          <div class="card card-profile">
+            <div class="row justify-content-center">
+              <div class="col-lg-5 order-lg-2">
+                {% if is_discord_profile_allowed == "True" %}
+                <div class="card-profile-image">
+                  <a href="#"><span class="setavatar" id="setavatar"><img src="{{ discord_profile_link }}"
+                        class="rounded-circle"></a></span>
+                </div>
+                {% endif %}
+                {% if is_discord_profile_allowed == "False" %}
+                <div class="card-profile-image">
+                  <a href="#"><span class="setavatar" id="setavatar"><img src="{{ user_avatar_path }}"
+                        class="rounded-circle"></a></span>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="card-header text-center border-0= pt-8 pt-md-4 pb-0 pb-md-4"></div>
+            <div class="card-body pt-0">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center"></div>
+                </div>
+              </div>
+              <div class="text-center">
+                {% if userUseCID == "False" %}
+                <a href="#"><span class="open-me" id="open-me">
+                    <h3 class="name">{{ name }} - {{ cid }} <i class="fas fa-edit"></i></h3></a></span>
+                {% else %}
+                <a href="#"><span class="open-me" id="open-me">
+                    <h3 class="name">{{ cid }} <i class="fas fa-edit"></i></h3></a></span>
+                {% endif %}
+                <div class="h5 mt-4">
+                  <div>
+                    <strong>ATC Rating:</strong>
+                    <span class="description">{{ RatingLong }} ({{ RatingShort }})</span>
+                  </div>
+                  <div>
+                    <strong>Pilot Rating:</strong>
+                    <span class="description">{{ PilotLong }} ({{ PilotShort }})</span>
+                  </div>
+                  <div>
+                    <strong>Region:</strong>
+                    <span class="description">{{ RegionName }}</span>
+                  </div>
+                  <div>
+                    <strong>Division:</strong>
+                    <span class="description">{{ DivisionName }}</span>
+                  </div>
+                  <div>
+                    <strong>Subdivision/vACC:</strong>
+                    <span class="description">{{ SubdivisionName }}</span>
+                  </div>
+
+                  {% if staff_role != "None" %}
+                  <div style="padding-top:10px">
+                    <strong>Staff Role:</strong>
+                    <span class="description">{{ staff_role }}</span>
+                  </div>
+                  {% endif %}
+                  {% if staff_position != "None" %}
+                  <div>
+                    <strong>Staff Position:</strong>
+                    <span class="description">{{ staff_position }}</span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Discord Unlink Modal -->
+  <div class="popup center" id="popup-modal">
+    <div class="icon">
+      <i class="fas fa-exclamation"></i>
+    </div>
+    <div class="title">
+      Hold up! Are you sure?
+    </div>
+    <div class="description">
+      If you unlink your Discord account, you will be kicked automatically from the Nepal vACC Discord Server if you
+      are a member. This will also remove your Discord profile picture if you have selected it.
+    </div>
+    <div class="dismiss-btn">
+      <a href='/dashboard/discord/unlink'><button id="dismiss-popup-btn">Unlink</button></a>
+    </div>
+    <div class="hi-btn">
+      <a href="#" class="sidenav-toggler" data-action="sidenav-pin"
+      data-target="#sidenav-main" ><button id="hi-popup-btn">Uhh, nevermind!</button></a>
+    </div>
+  </div>
+  <div class="dimmer"></div>
+  <!-- Name Change Modal -->
+  <div class="modal-name center" id="modal-name">
+    <div class="icon">
+      <i class="fas fa-exclamation"></i>
+    </div>
+    <div class="title">
+      Change your nickname!
+    </div>
+    <div class="description">
+      <form action="#" method="POST">
+        <div class="container">
+          <label for="group" class="form-label">Select your name format or only your CID. Note: This will be used
+            everywhere across Nepal vACC Dashboard and your name will be changed in Discord server if you are a
+            member.</label>
+          <select name="group" id="group" class="form-control">
+            {% if UseCID == "True" %}
+            <option value="1">{{ cid }}</option>
+            {% endif %}
+            {% if UseCID == "False" %}
+            <option value="3">{{ name_first }} - {{ cid }}</option>
+            <option value="2">{{ naming }} - {{ cid }}</option>
+            <option value="1">{{ cid }}</option>
+            {% endif %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-warning" style="margin-top: 5%; margin-bottom: 5%;">Change it!</button>
+        <div class="nvm-btn">
+          <a href="#"><button id="nvm-popup-btn" type="button" class="btn"
+              style="color: white; background-color: #adb5bd;">Dismiss</button></a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="dimmer2"></div>
+  <!--Upload Avatar Modal-->
+  <div class="avatar-modal center" id="avatar-modal">
+    <div class="title">
+      Change your avatar
+    </div>
+    <div class="description">
+      <form action="/dashboard/upload/avatar" method="POST" enctype="multipart/form-data">
+        <label for="formFileLg" class="form-label">Please make sure your avatar is in compliance with VATSIM Code of
+          Conduct.</label>
+        <input class="form-control form-control" id="image" name="image" type="file" oninput="filesize(this)">
+        <button type="submit" class="btn btn-primary" style="margin-top: 5%; margin-bottom: 5%;">Upload</button>
+      </form>
+      <p style="font-weight: 500;">Or alternatively choose your Discord Avatar.</p>
+      {% if is_linked == "True" %}
+      {% if is_discord_profile_allowed == "False" %}
+      <button class="btn btn-secondary"><a href="/dashboard/discord/profile/set" target="_self">
+          <i class="fas fa-user"></i>
+          <span class="nav-link-text">Set Discord Profile Picture</span>
+        </a>
+      </button>
+      {% endif %}
+      {% endif %}
+      {% if is_linked == "True" %}
+      {% if is_discord_profile_allowed == "True" %}
+      <button class="btn btn-secondary"><a href="/dashboard/discord/profile/remove" target="_self">
+          <i class="fas fa-user"></i>
+          <span class="nav-link-text">Remove Discord Profile Picture</span>
+        </a>
+      </button>
+      {% endif %}
+      {% endif %}
+      {% if is_linked == "No" %}
+      <pre style="background-color: rgb(102, 100, 100); color: white;">Discord account not linked.</pre>
+      {% endif %}
+      <p style="font-weight: 500; margin-top: 2%;">OR:</p>
+      <form action="/dashboard/avatar/reset" method="POST">
+        <button id="resetavatar" name="resetavatar" value="resetpls" type="submit" class="btn"
+          style="background-color: #525f7f; color: white; margin-bottom: 5%;">Reset Avatar</button>
+      </form>
+      <div class="avatar-nvm">
+        <a href="#"><button id="avatar-nvm-btn" type="button" class="btn"
+            style="color: white; background-color: #adb5bd; margin-top: 3%;">Dismiss</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="dimmer3"></div>
+  <!-- Core -->
+  <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/static/vendor/js-cookie/js.cookie.js"></script>
+  <script src="/static/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="/static/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <!-- Optional JS -->
+  <script src="/static/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/vendor/chart.js/dist/Chart.extension.js"></script>
+  <!-- Argon JS -->
+  <script src="/static/js/argon.js?v=1.2.0"></script>
+  <!-- Custom JS -->
+  <script src="/static/js/popup.js"></script>
+  <script src="/static/js/upload.js"></script>
+  <script>
+    const time = document.getElementById('time')
+    function updatetime() {
+      const nowtime = new Date().toUTCString()
+
+      time.innerHTML = nowtime
+    }
+    setInterval(updatetime, 1000);
+  </script>
+</body>
+
+</html>

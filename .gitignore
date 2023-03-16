@@ -1,0 +1,15 @@
+
+website/__pycache__/avatar.cpython-39.pyc
+website/__pycache__/auth.cpython-39.pyc
+website/__pycache__/__init__.cpython-39.pyc
+website/__pycache__/dis.cpython-39.pyc
+website/__pycache__/emailfunc.cpython-39.pyc
+website/__pycache__/errors.cpython-39.pyc
+website/__pycache__/exam.cpython-39.pyc
+website/__pycache__/examutils.cpython-39.pyc
+website/__pycache__/models.cpython-39.pyc
+website/__pycache__/utils.cpython-39.pyc
+website/__pycache__/views.cpython-39.pyc
+*.pyc
+.env
+.env_old

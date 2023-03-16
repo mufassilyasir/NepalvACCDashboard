@@ -1,0 +1,323 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+.center {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  
+}
+
+.time {
+  text-align: center; 
+  margin-right: 10%; 
+  margin-left: 40%; 
+  color:white; 
+  font-weight: 400; 
+  white-space :nowrap;
+  font-family: "Poppins";
+}
+
+
+.popup {
+  width:400px;
+  height:280px;
+  padding:30px 20px;
+  background:#f5f5f5;
+  border-radius:10px;
+  box-sizing:content-box;
+  z-index:2;
+  text-align:center;
+  opacity:0;
+  top:-200%;
+  transform:translate(-50%,-50%) scale(0.5);
+  transition: opacity 300ms ease-in-out,
+              top 1000ms ease-in-out,
+              transform 1000ms ease-in-out;
+}
+.popup.active {
+  opacity:1;
+  top:50%;
+  transform:translate(-50%,-50%) scale(1);
+  transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
+
+}
+.popup .icon {
+  margin:5px 0px;
+  width:50px;
+  height:50px;
+  border:2px solid #db2121;
+  text-align:center;
+  display:inline-block;
+  border-radius:50%;
+  line-height:60px;
+}
+.popup .icon i.fa {
+  font-size:30px;
+  color:#34f234;
+}
+.popup .title {
+  margin:5px 0px;
+  font-size:30px;
+  font-weight:600;
+}
+.popup .description {
+  color:#222;
+  font-size:15px;
+  padding:5px;
+}
+.popup .dismiss-btn {
+  margin-top:15px;
+  margin-left: 0px;
+  margin-right: 180px;
+}
+
+.popup .hi-btn {
+  margin-top:-46px;
+  margin-left: 180px;
+  margin-right: 0px;
+}
+
+
+
+.popup .dismiss-btn button {
+  padding:10px 43px;
+  background:rgb(216, 102, 36);
+  color:#f5f5f5;
+  border:2px solid rgb(197, 20, 20);
+  font-size:14px;
+  font-weight:600;
+  outline:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.popup .hi-btn button {
+  padding:10px 23px;
+  background:#585757;;
+  color:#f5f5f5;
+  border:2px solid rgb(73, 70, 70);
+  font-size:14px;
+  font-weight:600;
+  outline:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition: all 300ms ease-in-out;
+}
+.popup .dismiss-btn button:hover {
+  color:#111;
+  background:rgb(194, 17, 17);
+}
+
+.popup .hi-btn button:hover {
+  color:rgb(0, 0, 0);
+  background:rgb(255, 255, 255);
+}
+
+.popup > div {
+  position:relative;
+  top:10px;
+  opacity:0;
+}
+.popup.active > div {
+  top:0px;
+  opacity:1;
+}
+.popup.active .icon {
+  transition: all 300ms ease-in-out 250ms;
+}
+.popup.active .title {
+  transition: all 300ms ease-in-out 300ms;
+}
+.popup.active .description {
+  transition: all 300ms ease-in-out 350ms;
+}
+.popup.active .hi-btn {
+  transition: all 300ms ease-in-out 400ms;
+}
+
+
+/* new */
+.modal-name {
+  width:400px;
+  height:380px;
+  padding:30px 20px;
+  background:#f5f5f5;
+  border-radius:10px;
+  box-sizing:content-box;
+  z-index:4;
+  text-align:center;
+  opacity:0;
+  top:-200%;
+  transform:translate(-50%,-50%) scale(0.5);
+  transition: opacity 300ms ease-in-out,
+              top 1000ms ease-in-out,
+              transform 1000ms ease-in-out;
+}
+.modal-name.active {
+  opacity:1;
+  top:50%;
+  transform:translate(-50%,-50%) scale(1);
+  transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
+
+}
+.modal-name .icon {
+  margin:5px 0px;
+  width:50px;
+  height:50px;
+  border:2px solid #db2121;
+  text-align:center;
+  display:inline-block;
+  border-radius:50%;
+  line-height:60px;
+}
+.modal-name .icon i.fa {
+  font-size:30px;
+  color:#34f234;
+}
+.modal-name .title {
+  margin:5px 0px;
+  font-size:30px;
+  font-weight:600;
+}
+.modal-name .description {
+  color:#222;
+  font-size:15px;
+  padding:5px;
+}
+
+
+
+
+
+
+.modal-name > div {
+  position:relative;
+  top:10px;
+  opacity:0;
+}
+.modal-name.active > div {
+  top:0px;
+  opacity:1;
+}
+.modal-name.active .icon {
+  transition: all 300ms ease-in-out 250ms;
+}
+.modal-name.active .title {
+  transition: all 300ms ease-in-out 300ms;
+}
+.modal-name.active .description {
+  transition: all 300ms ease-in-out 350ms;
+}
+
+
+/* Avatar Upload */
+.avatar-modal {
+  width:400px;
+  height:450px;
+  padding:30px 20px;
+  background:#f5f5f5;
+  border-radius:10px;
+  box-sizing:content-box;
+  z-index:4;
+  text-align:center;
+  opacity:0;
+  top:-200%;
+  transform:translate(-50%,-50%) scale(0.5);
+  transition: opacity 300ms ease-in-out,
+              top 1000ms ease-in-out,
+              transform 1000ms ease-in-out;
+}
+.avatar-modal.active {
+  opacity:1;
+  top:50%;
+  transform:translate(-50%,-50%) scale(1);
+  transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
+
+}
+.avatar-modal .icon {
+  margin:5px 0px;
+  width:50px;
+  height:50px;
+  border:2px solid #db2121;
+  text-align:center;
+  display:inline-block;
+  border-radius:50%;
+  line-height:60px;
+}
+.avatar-modal .icon i.fa {
+  font-size:30px;
+  color:#34f234;
+}
+.avatar-modal .title {
+  margin:5px 0px;
+  font-size:20px;
+  font-weight:600;
+}
+.avatar-modal .description {
+  color:#222;
+  font-size:15px;
+  padding:5px;
+}
+
+
+
+
+
+
+.avatar-modal > div {
+  position:relative;
+  top:10px;
+  opacity:0;
+}
+.avatar-modal.active > div {
+  top:0px;
+  opacity:1;
+}
+.avatar-modal.active .icon {
+  transition: all 300ms ease-in-out 250ms;
+}
+.avatar-modal.active .title {
+  transition: all 300ms ease-in-out 300ms;
+}
+.avatar-modal.active .description {
+  transition: all 300ms ease-in-out 350ms;
+}
+
+.dimmer {
+  display: none;
+  background: #000;
+  opacity: 0.70;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dimmer2 {
+  display: none;
+  background: #000;
+  opacity: 0.70;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dimmer3 {
+  display: none;
+  background: #000;
+  opacity: 0.70;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+

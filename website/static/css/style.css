@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+body {
+
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+
+.heading {
+    font-family: "Poppins";
+    text-align: center;
+    font-weight: 500;
+    font-size: 35px;
+    color: black;
+    margin-bottom: 3%;
+}
+
+.nothing {
+    font-family: "Poppins";
+    text-align: center;
+    font-weight: 300;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 0%;
+    margin-top: 5%;
+    margin-right: 30%;
+    margin-left: 30%;
+    display: inline-block
+}
+
+
+.content-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box {
+    border-radius: 35px;
+    width: 500px;
+    height: 230px;
+    background: #e6e6e6;
+    margin:auto;
+}
+
+
+
+.deny {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+    padding-top: 10px;
+
+    }
+.accept {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.h5.mt-4{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.exam-status-failed {
+    background-color: rgb(207, 55, 55);
+}
+
+.exam-status-passed {
+    background-color: #3be03b 
+}
+
+
+
+@media all and (max-width: 900px){
+    .event-image {
+        object-fit: cover;
+        max-width: 90%;
+        height: auto;
+    }
+}
+
+@media all and (max-width: 300px){
+    .event-link{
+        font-size: 10px;
+    }
+}

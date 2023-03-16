@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Mass Email</title>
+    <link rel="shortcut icon" type="img/png" href="/static/img/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="wrapper">
+        <a href="/dashboard/admin/"><button type="button" class="btn btn-outline-primary">Back to Admin
+                Panel</button></a>
+    </div>
+    <h2 style="text-align: center;">Mass Email</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="#" method="POST">
+        <div class="container">
+            <label for="group" class="form-label">Select Group</label>
+            <select name="group" id="group" class="form-control">
+                <option value="1">People Opted in Receiving Emails</option>
+                <option value="2">Residents (Opted in emails)</option>
+                <option value="3">Residents (Everyone)</option>
+                <option value="4">Visitors (Opted in emails)</option>
+                <option value="5">Visitors (Everyone)</option>
+                <option value="6">Nepal vACC Staff (Everyone)</option>
+                <option value="7">Everyone (Not Recommended)</option>
+            </select>
+        </div>
+        <div class="container">
+            <label for="inputPassword5" class="form-label">Email Subject</label>
+            <input type="text" id="inputText" class="form-control" name="subject" aria-describedby="bodyHelpBlock"
+                maxlength="100" placeholder="Welcome To Nepal vACC">
+            <div id="bodyHelpBlock" class="form-text">
+                Your subject must be maximum of 100 characters long.
+            </div>
+        </div>
+        <div class="container">
+            <textarea name="emailbody"></textarea>
+            <div id="emailbodyHelpBlock" class="form-text">
+                Your message must be maximum of 1300 characters long.
+            </div>
+        </div>
+        <div class="container">
+            <label for="inputbody" class="form-label">Reason to send this mass email</label>
+            <input type="text" id="inputreason" class="form-control" name="reason" aria-describedby="emailbodyHelpBlock"
+                maxlength="60" placeholder="For GDPR reasons, it will be sent in the email!">
+            <div id="emailbodyHelpBlock" class="form-text">
+                Your reason must be maximum of 60 characters long.
+            </div>
+        </div>
+        <div class="container" style="padding-top:10px;padding-bottom:10px">
+            <button type="submit" class="btn btn-warning">Send em!</button>
+        </div>
+    </form>
+</body>
+    <script src="/static/standardck/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('emailbody');
+    </script>
+</html>
